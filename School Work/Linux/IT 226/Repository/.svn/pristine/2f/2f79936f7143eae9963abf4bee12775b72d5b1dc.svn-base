@@ -1,0 +1,19 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+
+int main()
+{
+ifstream inputfile;
+inputfile.open("earthmap.ppm");
+
+Image defaultImage;
+cout << "Default's width: " << defaultImage.getWidth() << " Default's height: " << defaultImage.getHeight<<endl();
+
+cout << "Creating new Image object, expecting height = 5, width = 10"<<endl;
+Image definedImage(10, 5);
+cout << "Defined image's width: " << definedImage.getWidth() << " Defined image's height: " << definedImage.getHeight<<endl();
+
+
+}

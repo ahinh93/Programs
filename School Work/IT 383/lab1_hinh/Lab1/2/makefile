@@ -1,0 +1,11 @@
+asg1: asg2.o  asg1.o asg1.h
+	gcc -o asg1  asg2.o asg1.o
+
+asg2.o: asg2.c
+	gcc -c asg2.c
+
+asg1.o: asg1.c
+	gcc -c asg1.c
+
+clean:
+	rm -f *.o

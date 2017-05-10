@@ -1,0 +1,45 @@
+/**
+ * 10/23/13 
+ * @author Andrew Hinh
+ */
+import myUtil.*;
+import java.util.*;
+import java.io.*;
+
+public class Asg6 {
+	
+	public static void main(String[] args) {
+		
+		try
+		{
+			File file = new File(args[0]);
+			Scanner in = new Scanner(file);
+			
+			while (in.hasNext()) {
+				String fullLine = in.nextLine();
+				AStack<String> theStack = new AStack<String>(fullLine.length());
+				
+				
+				
+			}
+			
+		}
+		try catch
+		{
+			
+			Scanner in = new Scanner (new File("/home/ahinh/IT179/Asg6/arithExps.txt"));
+		}
+		
+		catch (FileNotFoundException e)
+		{
+			
+			System.out.println("No argument nor file was found.");
+		}
+	
+	}
+	
+	private static void solve() {
+		
+	}
+	
+}

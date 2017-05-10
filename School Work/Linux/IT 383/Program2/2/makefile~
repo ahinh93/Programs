@@ -1,0 +1,19 @@
+all:  detatched primes revised-thread-create2 thread-create thread-create2
+
+detatched: detatched.c
+	gcc -o -lpthread detatched detatched.c
+
+primes: primes.c
+	gcc -o -lpthread primes primes.c
+
+revised-thread-create2: revised-thread-create2.c
+	gcc -o -pthread revised-thread-create2 revised-thread-create2.c
+
+thread-create: thread-create.c
+	gcc -o -pthread thread-create thread-create.c
+
+thread-create2: thread-create2.c
+	gcc -o -pthread thread-create2 thread-create2.c 
+
+clean:
+	rm -f *.o

@@ -1,0 +1,6 @@
+#include "InvertColors.h"
+
+Image InvertColors::doOperation(Image image)
+{
+
+}

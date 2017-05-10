@@ -1,0 +1,36 @@
+/**
+ * @author Andrew Hinh copyright
+ * 10/22/13
+ * uid:816226600 
+ */
+
+package myUtil;
+
+
+public class AStack<T> extends Object implements Stack<T> {
+	
+	private T[] myArray = new T[];
+	
+	public AStack() {
+		myArray = new T[10];
+	}
+	
+	public AStack(int capacity) {
+		myArray = new T[capacity];
+	}
+	
+	public boolean empty() {
+		return (myArray[0] == null);
+	}
+	
+	public T peek() {
+		boolean found = false;
+		for (int i = 0; i < myArray.length-1 && found == false; i++)
+		{
+			if (myArray[i+1] == null) {
+				return myArray[i];
+			}
+		}
+	}
+	
+}

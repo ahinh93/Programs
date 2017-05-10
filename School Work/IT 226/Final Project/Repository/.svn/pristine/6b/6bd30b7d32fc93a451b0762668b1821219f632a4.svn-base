@@ -1,0 +1,311 @@
+#include "Image.h"
+#include <iostream>
+#include <string>
+#include <string.h>
+#include <fstream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <cmath> 
+
+using namespace std;
+Image::Image()
+{
+	pixels = NULL;
+	width = 0;
+	height = 0;
+}
+
+Image::~Image()
+{
+	int i,j,k;
+	for (i = 0; i < height; i++)
+	{
+		for (j = 0; j < width; j++)
+		{
+			
+			delete[] pixels[i][j];
+			pixels[i][j] = NULL;
+		}
+		delete[] pixels[i];
+		pixels[i] = NULL;
+	}
+	delete[] pixels;
+    pixels=NULL;
+}
+
+Image::Image(int w, int h)
+{
+	width = w;
+	height = h;
+	pixels = new float**[height];	
+	int i, j, k;
+	for (i = 0; i < height; i++)
+	{
+		pixels[i] = new float*[width];
+		for (j = 0; j < width; j++)
+		{
+			pixels[i][j] = new float[3];
+			for (k = 0; k < 3; k++)
+			{
+				pixels[i][j][k] = 0;
+			}
+		}
+	}
+}
+
+Image::Image(const Image& I)
+{
+	int i, j, k;
+	width = I.getWidth();
+	height = I.getHeight();
+	
+	pixels = new float**[height];
+	for (i = 0; i<height; i++)
+	{
+		pixels[i] = new float*[width];
+		for (j = 0; j < width; j++)
+		{
+			pixels[i][j] = new float[3];
+			for (k = 0; k<3; k++)
+			{
+				pixels[i][j][k] = I.pixels[i][j][k];
+			}
+		}
+	}
+}
+
+int Image::getWidth() const
+{
+	return width;
+}
+	
+int Image::getHeight() const
+{
+	return height;
+}
+
+bool Image::fromPPMFile(string filename)
+{
+	const char* cfilename;
+	
+	cfilename = filename.c_str();
+
+	string line;
+	ifstream fin(cfilename, ios::in);
+	if (fin.is_open())
+	{
+	
+		if (fin >> line)
+		{
+			if (line.compare("P3") != 0)
+			{
+				
+				fin.close();
+				return false;
+			}
+		}
+
+		if (fin >> line)
+		{
+			width = atoi(line.c_str());
+		}
+		if (fin >> line)
+		{
+			height = atoi(line.c_str());
+		}
+
+		int factor;
+		if (fin >> line)
+		{
+			factor = atoi(line.c_str());
+		}
+
+		int i, j, k;
+		pixels = new float**[height];
+		for (i = 0; i<height; i++)
+		{
+			
+			pixels[height-1-i] = new float*[width];
+			for (j = 0; j < width; j++)
+			{
+				pixels[height-1-i][j] = new float[3];
+				float red, green, blue;
+				int redInt, greenInt, blueInt;
+	
+				fin >> redInt;
+				red = (float)redInt/factor;
+
+				fin >> greenInt;
+				green = (float)greenInt/factor;
+
+				fin >> blueInt;
+				blue = (float)blueInt/factor;
+			
+				pixels[height-1-i][j][0] = red;
+				pixels[height-1-i][j][1] = green;
+				pixels[height-1-i][j][2] = blue;
+				//cout << red << ", " << green << ", " << blue << endl;
+			}
+		}
+		fin.close();
+
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+	
+bool Image::toPPMFile(string filename)
+{
+	const char* cfilename;
+	
+	cfilename = filename.c_str();
+
+
+	ofstream outputFile(cfilename);
+		
+	if (outputFile.is_open())
+	{
+		outputFile << "P3" << endl;
+		outputFile << width << " " << height << endl;
+		outputFile << "255" << endl;
+		int i, j;
+		for (i = 0; i < height; i++)
+		{
+			for (j = 0; j < width; j++)
+			{
+				outputFile << (int)(pixels[height-1-i][j][0]*255) << " " << (int)(pixels[height-1-i][j][1]*255) << " " << (int)(pixels[height-1-i][j][2]*255) << endl;
+			}
+		}
+		outputFile.close();
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+bool Image::flipVertical()
+{
+	int i,j;
+	float r,g,b;
+	if((width<=0)||(height<=0))
+		return false;
+	for(i=0;i<height/2;i++)
+	{
+		for(j=0;j<width;j++)
+		{
+			r = pixels[i][j][0];
+			g = pixels[i][j][1];
+			b = pixels[i][j][2];
+			
+			pixels[i][j][0] = pixels[height-1-i][j][0];
+			pixels[i][j][1] = pixels[height-1-i][j][1];
+			pixels[i][j][2] = pixels[height-1-i][j][2];
+			
+			pixels[height-1-i][j][0] = r;
+			pixels[height-1-i][j][1] = g;
+			pixels[height-1-i][j][2] = b;			
+		}
+	}
+	return true;
+}
+
+void Image::thresholdForDisplay()
+{
+	int i,j,k;
+	float min,max;
+		
+	for (k=0;k<3;k++) //for each channel
+	{			
+		min = max = pixels[0][0][k];
+		for (i=0;i<height;i++)
+		{
+			for (j=0;j<width;j++)
+			{
+				if (pixels[i][j][k]>max)
+					max = pixels[i][j][k];
+				
+				if (pixels[i][j][k]<min)
+					min = pixels[i][j][k];
+			}
+		}			
+		for (i=0;i<height;i++)
+		{
+			for (j=0;j<width;j++)
+			{
+				pixels[i][j][k] = (pixels[i][j][k]-min)/(max-min);
+			}
+		}
+			
+	}
+}
+
+Image Image::getEdges()const
+{
+	float filterX[3][3] = {{-1,0,1},{-2,0,2},{-1,0,1}};
+	float filterY[3][3] = {{1,2,1},{0,0,0},{-1,-2,-1}};
+	Image edgeimage(*this);
+	int i,j,k,m,n;
+	float sumX,sumY,mag;
+    
+	for (k=0;k<3;k++)
+	{
+		for (i=1;i<height-1;i++)
+		{
+			for (j=1;j<width-1;j++)
+			{
+				sumX = sumY = 0.0f;
+				for (m=0;m<3;m++)
+				{
+					for (n=0;n<3;n++)
+					{
+						sumX = sumX + filterX[m][n]*pixels[i+(m-1)][j+(n-1)][k];
+						sumY = sumY + filterY[m][n]*pixels[i+(m-1)][j+(n-1)][k];
+					}
+				}
+				edgeimage.pixels[i][j][k] = abs(sumX+sumY);
+			}
+		}
+	}
+	
+	for (i=0;i<height;i++)
+	{
+		for (j=0;j<width;j++)
+		{
+			mag = 0.0f;
+			for (k=0;k<3;k++)
+				mag += edgeimage.pixels[i][j][k]*edgeimage.pixels[i][j][k];
+			mag = (float)sqrt(mag);
+			for (k=0;k<3;k++)
+				edgeimage.pixels[i][j][k] = mag;
+		}
+	}
+	edgeimage.thresholdForDisplay();
+	return edgeimage;
+}
+
+Image Image::blur()
+{
+	int i,j;
+	int topLeft, topCenter, topRight, middleLeft, middleCenter, middleRight, bottomLeft, bottomCenter, bottomRight;
+	
+	
+	for(i = 0; i < height; i++)
+	{
+		for(j = 0; j < width; j++)
+		{
+			if(i==0)
+			{
+				topLeft = topCenter = topRight = 0;
+			}
+			if(i==height-1)
+			{
+				bottomLeft = bottomCenter = bottomRight = 0;
+			}
+		}
+	}
+
+}

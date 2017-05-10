@@ -1,0 +1,15 @@
+#ifndef IMAGE_OPERATION_H
+#define IMAGE_OPERATION_H
+#include "Image.h"
+class ImageOperation
+{	
+	public:
+	static ImageOperation * makeOperation(string operName);
+	virtual Image doOperation(Image image){};
+};
+
+
+
+
+
+#endif

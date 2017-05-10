@@ -1,0 +1,17 @@
+{
+  "/usr/local/java/jdk1.7.0/jre/lib/rt.jar": {
+    "coordinate": "jre:jre:zip:call:1.0.0",
+    "location": "/usr/local/java/jdk1.7.0/jre/lib/rt.jar",
+    "status": "RESOLVED"
+  },
+  "/home/ahinh/IT179/myUtil/src": {
+    "location": "/home/ahinh/IT179/myUtil/src",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027/home/ahinh/IT179/myUtil/src\u0027. Skipped."
+  },
+  "/home/ahinh/IT179/myUtil": {
+    "location": "/home/ahinh/IT179/myUtil",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027/home/ahinh/IT179/myUtil\u0027. Skipped."
+  }
+}

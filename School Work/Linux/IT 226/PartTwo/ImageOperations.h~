@@ -1,0 +1,25 @@
+#ifndef IMAGE_OPERATIONS_H
+#define IMAGE_OPERATIONS_H
+#include "Image.h"
+
+class FlipVertical
+{
+	public:
+		Image doOperation(Image image);
+};
+
+class GetEdges
+{
+	private:
+		void thresholdForDisplay(Image& image);
+	public:
+		Image doOperation(Image image);
+};
+
+class Blur
+{
+	public:
+		Image doOperation(Image image);
+};
+
+#endif

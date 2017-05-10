@@ -1,0 +1,13 @@
+Andrew Hinh|ID:2|02/12/2014|8.75 hours
+Landon Maupin|ID:1|04/13/2014|2.35 hours
+Landon Maupin|ID:1|04/14/2014|6.34 hours
+Andrew Hinh|ID:2|04/14/2014|5.84 hours
+Carl Grimes|ID:3|04/15/2014|2.00 hours
+Beth Greene|ID:6|04/15/2014|3.00 hours
+Daryl Dixon|ID:5|04/17/2014|4.21 hours
+Rick Grimes|ID:4|04/19/2014|3.69 hours
+Beth Greene|ID:6|04/20/2004|6.54 hours
+Beth Greene|ID:6|05/01/2014|5.41 hours
+Jane Smith|ID:7|05/02/2014|3.66 hours
+Jane Smith|ID:7|05/03/2014|5.10 hours
+Landon Maupin|ID:1|05/03/2014|5.46 hours

@@ -1,0 +1,34 @@
+<html>
+<head>
+<script>
+	function validate()
+	{
+		var temp = document.getElementById("question4").value;
+		var length = temp.length;
+		var checks = parseInt(length/2);
+		var index = 1;
+		while(checks !=  0)
+		{
+			//check if index is a digit
+			if(isNaN(temp.charAt(index)))
+			{
+				alert("not a digit")
+				return false;
+			}
+			
+			
+			
+			index+=2;
+			checks -= 1;		
+		}
+		return true;
+	}	
+</script>
+</head>
+<body>
+<form onSubmit="return validate()">
+	<input type="text" id="question4"><br>
+	<input type="submit" value="submit">
+</form>
+</body>
+</html>

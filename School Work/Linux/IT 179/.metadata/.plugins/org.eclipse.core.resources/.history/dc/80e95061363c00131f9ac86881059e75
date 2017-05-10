@@ -1,0 +1,70 @@
+/**
+ * 10/23/13 
+ * @author Andrew Hinh
+ */
+import myUtil.*;
+import java.util.*;
+import java.io.*;
+
+public class Asg6 {
+	
+	public static void main(String[] args) {
+		
+		
+		try
+		{
+			Scanner in;
+			if (args[0].length() != 0) {
+				 in = new Scanner (new File(args[0]));
+				
+			}
+			else {
+				 in = new Scanner (new File("/home/ahinh/IT179/Asg6/arithExps.txt"));
+			}
+			
+			while (in.hasNext()) {
+				String fullLine;
+				AStack<String> opStack = new AStack<String>(fullLine.length());
+				AStack<Double> numStack = new AStack<Double>(fullLine.length());
+				
+				
+				if (in.next() != '(' || in.next() != ')' || in.next() != '+' || in.next() != '-' || in.next() != '^') {
+					numStack.push(Double.parseDouble(in.next()));
+				}
+				
+				switch(in.next()) {
+				//always push (out, once stored, lowest priority of 0
+				case '(': 
+					opStack.push(new operatorObj(in.next(),0));
+					break;
+				case '/':
+					if (opStack.empty()) {
+						opStack.push(new operatorObj(in.next(), 75));
+						break;
+					}
+				
+					
+					
+				}
+			}
+			
+			private static void computeTwo(AStack<String> ops, AStack<Double nums>) {
+				double num2 = nums.pop();
+				double num1 = nums.pop();
+				
+				
+			}
+			
+		}
+
+		catch (FileNotFoundException e)
+		{
+			
+			System.out.println("No argument nor file was found.");
+		}
+	
+	}
+	
+
+	
+}

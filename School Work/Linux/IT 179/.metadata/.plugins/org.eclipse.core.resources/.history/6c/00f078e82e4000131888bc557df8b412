@@ -1,0 +1,45 @@
+/**
+ * 10/23/13 
+ * @author Andrew Hinh
+ */
+import myUtil.*;
+import java.util.*;
+import java.io.*;
+
+public class NewAsg6 {
+	
+	public static void main(String[] args) {
+		
+		Scanner in,sizeCount;
+		String[] equations;
+		
+		try {
+			in = new Scanner(new File("/home/cli2/public/IT179/arithExps.txt"));
+			sizeCount = new Scanner(new File("/home/cli2/public/IT179/arithExps.txt"));
+			
+			//capture size of file and assign it to array
+			int sizeOfArray;
+			while (sizeCount.hasNext()) {
+				sizeOfArray++;
+			}
+			sizeCount.close();
+			//declare array with size equal to number of lines as equation
+			equations = new String[sizeOfArray];
+			
+			while(in.hasNext()) {
+				equations[i] = in.nextLine();
+			}
+			
+			for (int i = 0; i < sizeOfArray; i++) {
+				System.out.println(equations[i]);
+			}
+			in.close();
+		}
+		catch (FileNotFoundException e) {
+			System.out.println(e);
+		}
+		
+		
+	}
+
+}

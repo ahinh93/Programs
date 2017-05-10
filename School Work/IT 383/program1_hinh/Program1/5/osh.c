@@ -1,0 +1,139 @@
+#include "stdio.h"
+#include "stdlib.h"
+#include "string.h"
+#include "fcntl.h"
+#include "unistd.h"
+#include "sys/mman.h"
+#include "sys/shm.h"
+#include "sys/stat.h"
+
+#define MAX_INSTRUCT_SIZE 256
+
+int params = 0;
+int backgroundRequest = 0;
+int report = 0;
+int historySize = 0;
+char *history[10];
+
+void fetchInstruct(char *arr[])
+{
+	char *input = malloc(sizeof(char) * MAX_INSTRUCT_SIZE);
+	fgets(input, MAX_INSTRUCT_SIZE, stdin);
+	//convert input into args array using tokenizer
+	input[strcspn(input,"\n")]=0;
+	//shift all values in history by 1, new instruction goes into index 0
+	int i;
+	
+	//shift history array
+
+
+	char *token = strtok(input," ");
+	int count = 0;
+	while(token && (count < 10))
+	{
+		//printf("token: %s\n",token);
+		arr[count] = token;
+		//next token
+		token = strtok(NULL, " ");
+		count++;
+		params++;
+		report++;
+	}
+	if(strcmp("&",arr[count-1]) == 0)
+	{
+		//remove & from args list and raise flag
+		backgroundRequest = 1;
+		count--;
+		params--;
+		report--;
+		arr[count] =  NULL;
+	}
+	//set last parameter as NULL for execvp
+	arr[count] = NULL;
+	params++;
+
+	free(input);
+}
+
+void runInstruct(char *args[])
+{
+	pid_t pid;
+	pid = fork();
+
+	/* error occurred */
+	if (pid < 0)
+	{ 
+		fprintf(stderr,"Fork Failed");
+		exit(-1);
+	}
+	/* child process */
+	else if (pid == 0) 
+	{	
+		if(backgroundRequest == 1)
+		{
+			printf("[1]+Running %s(Pid: %d)",getenv("_"),getpid());
+			int i;
+			for(i = 0; i < report; i++)
+			{
+				printf(" %s",args[i]);
+			}
+			printf(" &\n");
+		}
+		execvp(args[0],args);		
+		/*  this line will not be reached!!! 	*/
+	}
+	/* parent process */
+	else if((pid > 0) && (backgroundRequest == 1))
+	{	
+		
+		wait(NULL);
+		fflush(stderr);
+		//printf("CHILD PROCESS COMPLETE\n");
+	}
+	else
+	{	
+		fflush(stderr);
+	}
+}
+void printArgs(char *args[])
+{
+		printf("size of params: %d\n",params);
+		printf("Contents of args: \n");
+		int i;
+		for(i = 0; i < params; i++)
+		{
+			printf("%d:%s\n",i,args[i]);
+		}
+}
+void clean()
+{
+	params = 0;
+	backgroundRequest = 0;
+	report = 0;
+}
+int main(int argc, char *argv[])
+{
+	char *args[MAX_INSTRUCT_SIZE/2 + 1];
+	int should_run = 1;
+	//initialize history array
+	int i;
+	for(i = 0; i < sizeof(history); i++)
+	{
+		history[i] = "";
+	}
+	while(should_run)
+	{
+		printf("osh> ");
+		fflush(stdout);
+		
+		//obtain user instructions
+		fetchInstruct(args);
+		
+		//printArgs(args);
+
+		runInstruct(args);
+		//reset parameter count
+		clean();
+	}
+	return 0;
+}

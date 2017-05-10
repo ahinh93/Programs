@@ -1,0 +1,57 @@
+/**
+ * 10/23/13 
+ * @author Andrew Hinh
+ */
+import myUtil.*;
+
+import java.text.DecimalFormat;
+import java.util.*;
+import java.io.*;
+
+public class Asg6 {
+
+	public static void main(String[] args) {
+
+		Scanner in;
+		AStack operands;
+		AStack values;
+		DecimalFormat nf = new DecimalFormat("#0.####");
+		try {
+			in = new Scanner(new File("/home/cli2/public/IT179/arithExps.txt"));
+			
+			while (in.hasNext()) {
+				String fullLine = in.nextLine();
+				
+				computeLine(fullLine);
+				
+			}
+
+		}
+		catch (FileNotFoundException e)
+		{			
+			System.out.println("No argument nor file was found.");
+		}	
+	}
+	private static double computeLine(String a) {
+		AStack<String> opStack = new AStack<String>(a.length());
+		AStack<Double> numStack = new AStack<Double>(a.length());
+		String spacedLine = "";
+		
+		for (int i = 0; i < a.length(); i++) {
+
+			if (a.charAt(i) == '(' || a.charAt(i) == ')' || 
+					a.charAt(i) == '*' || a.charAt(i) == '/' || 
+					a.charAt(i) == '+' || a.charAt(i) == '-' || 
+					a.charAt(i) == '^') {
+				spacedLine += (" " +a.charAt(i) + " ");			
+			}
+			else {
+				spacedLine+= a.charAt(i);
+			}
+		}
+		//spacedLine is now formated to space between double and operator
+		
+		
+		
+	}
+}

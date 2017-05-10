@@ -1,0 +1,38 @@
+#ifndef asg4_h_
+#define asg4_h_
+#include "stdio.h"
+#include "stdlib.h"
+#include "fcntl.h"
+#include "sys/stat.h"
+#include "math.h"
+
+int main()
+{
+	int counter;
+	int in;
+	int arr[10];
+	int fw;
+	char buffer[BUFSIZ];
+	FILE *fi;
+	fw = open("output.txt", O_CREAT | O_RDWR, S_IWRITE | S_IREAD,0777);
+	for(counter = 0; counter < 10; counter++)
+	{
+		printf("arr[%d]=? ",counter);
+		 scanf("%d,",&in);
+		arr[counter] = in;
+		
+	}
+	printf("--------------------------\n");
+	for(counter = 9; counter >= 0; counter--)
+	{
+		printf("arr[%d] = %d\n",counter,arr[counter]);
+		sprintf(buffer,"%d", arr[counter]);
+		printf("printing out %s\n",buffer);
+		//buffer now contains int as char array
+		write(fw,buffer,sizeof(buffer));
+	}
+	close(fw);
+	return 0;
+}
+
+#endif

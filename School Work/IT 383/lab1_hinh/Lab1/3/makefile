@@ -1,0 +1,8 @@
+asg3:  asg3.o
+	gcc -o asg3  asg3.o
+
+asg3.o: asg3.c
+	gcc -c asg3.c
+
+clean:
+	rm -f *.o

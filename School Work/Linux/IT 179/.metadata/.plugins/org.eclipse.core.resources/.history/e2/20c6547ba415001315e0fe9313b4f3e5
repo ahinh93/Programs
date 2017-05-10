@@ -1,0 +1,98 @@
+/**
+ * Written by Andrew Hinh
+ * @author ahinh
+ * Copyright
+ * 9/5/13
+ */
+import java.util.*;
+import java.io.*;
+
+public class Asg2 
+{
+	//wants me to create scanner as static
+static Scanner in = null;
+	
+public static void main(String[] args)
+{
+	String fileName = "/home/ahinh/IT179/Asg2/jj.txt";
+	
+	try
+	{
+		File file = new File(fileName);
+		in = new Scanner (file);			
+	}
+	catch (FileNotFoundException e)
+	{
+		System.out.println("Error in trying to find jj.txt");
+	}
+	
+	
+	//check to make sure scanner has another line to read, if not, then end
+	while(in.hasNextLine())
+	{
+		//create variable to store line
+		String s = in.nextLine();
+		/*
+		 * Initiate jolly jump method, will return size of jump
+		 * -1 if line is not a jolly jump
+		 */
+		
+		jollyJumpCheck(s);
+		
+	}
+	
+}
+/**
+ * Will check if line is a jolly jump
+ * @param s A string of numbers separated by space
+ * @return A size of the jolly jump; -1 if not a jolly jump
+ */
+
+public static int jollyJumpCheck(String s)
+{
+	StringTokenizer tokens = new StringTokenizer(s);
+	ArrayList<String> pos = new ArrayList<String>();
+	
+	int a;
+	int b;
+	
+	//if there are more tokens, then add it to array list pos
+	while(tokens.hasMoreTokens())
+	{
+		String sj = tokens.nextToken();
+		pos.add(sj);			
+	}
+	
+	//create boolean array, the same size as pos
+	boolean[] differences = new boolean[pos.size()];
+	
+	//converts array list of strings into array list of integers
+	for(int i = 0; i < pos.size(); i++)
+	{
+			a = Integer.parseInt(pos.get(i));
+			differences[Math.abs(a - (a + 1))] = true;
+	}
+	
+	
+	/*differences[] is loaded, now check to see if all values after index 0 are true
+	 * if all indexes are true, return size of JJ
+	 * else, return -1
+	 */
+		
+		
+		int count = 1;
+		while (count < (pos.size()-1))
+		{
+			if (!differences[count])
+			{
+				System.out.println("-1");
+				return -1;
+			}
+			
+		}
+		System.out.println(count);
+		return count;
+		
+	}
+
+}

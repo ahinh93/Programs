@@ -1,0 +1,14 @@
+<items>
+	<item quantity="1" units="gallon">
+		<name>Milk</name>
+	</item>
+	
+	<item quantity="4" units="lb">
+		<name>onion</name>
+	</item>
+	
+	<item quantity="2" units="no">
+		<name>cabbage</name>
+	</item>
+</items>
+		

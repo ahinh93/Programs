@@ -1,0 +1,11 @@
+buffer: buffer.o test.o 
+	g++ -lpthread -o buffer buffer.o test.o 
+
+buffer.o: buffer.h buffer.cpp
+	g++ -c buffer.cpp
+
+test.o: test.cpp buffer.h
+	g++ -lpthread -c test.cpp
+
+clean:
+	rm buffer *.o

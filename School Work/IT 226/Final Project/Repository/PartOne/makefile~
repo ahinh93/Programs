@@ -1,0 +1,12 @@
+TestFromPPMFile: Image.o TestFromPPMFile.o
+	g++ -o TestFromPPMFile Image.o TestFromPPMFile.o 
+
+Image.o: Image.cpp Image.h
+	g++ -c Image.cpp
+	
+TestFromPPMFile.o: TestFromPPMFile.cpp Image.cpp Image.h
+	g++ -c TestFromPPMFile.cpp
+	
+clean:
+	rm *.o TestFromPPMFile
+

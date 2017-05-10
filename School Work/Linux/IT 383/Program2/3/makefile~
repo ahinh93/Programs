@@ -1,0 +1,11 @@
+Sudoku: Sudoku.o SudokuTest.o 
+	g++ -lpthread -o sudoku Sudoku.o SudokuTest.o 
+
+Sudoku.o: Sudoku.h Sudoku.cpp
+	g++ -lpthread -c Sudoku.cpp
+
+SudokuTest.o: SudokuTest.cpp Sudoku.h
+	g++ -lpthread -c SudokuTest.cpp
+
+clean:
+	rm sudoku *.o

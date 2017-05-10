@@ -1,0 +1,18 @@
+/**
+ * 10/23/13 
+ * @author Andrew Hinh
+ */
+import myUtil.*;
+import java.util.*;
+
+public class Asg6 {
+	
+	public static void main(String[] args) {
+		String fileName = "/home/ahinh/IT179/Asg6/arithExps.txt";
+		
+		
+	}
+	
+	
+	
+}

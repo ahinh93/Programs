@@ -1,0 +1,21 @@
+#include "Date.h"
+#include "fstream"
+
+Date::Date()
+{
+	//populate primeArr from .txt file
+	ifstream fin("primes-to-200k.txt");
+
+	if(fin.is_open())
+	{
+		while(!fin.eof())
+		{
+			for(int i = 0; i < 17984; i++)
+			{
+				fin>>primeArr[i];
+				cout<<primeArr[i]<<endl;
+			}
+		}
+		fin.close();
+	}
+}

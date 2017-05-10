@@ -1,0 +1,17 @@
+1. Choose
+fun choose(int,[]) =
+
+2. Permute
+fun permute x [] = [[x]]
+| permute x (h::t) =
+	(x::h::t)::(List.map(fn l => h::l) (permute x t))
+
+fun perm nil = [[]]
+| perm (h::t) = List.concat(List.map (fn l => permute h l) (perm t))
+
+3. Powerset
+fun powerset xs = foldr (fn (x, rest) => rest @ map (fn ys => x::ys) rest) [[]] xs
+
+4. factorize
+fun factorize = []
+

@@ -1,0 +1,66 @@
+/**
+ * 10/23/13 
+ * @author Andrew Hinh
+ */
+import myUtil.*;
+
+import java.text.DecimalFormat;
+import java.util.*;
+import java.io.*;
+
+public class Asg6 {
+
+	public static void main(String[] args) {
+
+		Scanner in;
+		String[] equations,postFix;
+		AStack operands;
+		AStack values;
+		DecimalFormat nf = new DecimalFormat("#0.####");
+		try {
+			in = new Scanner(new File("/home/cli2/public/IT179/arithExps.txt"));
+			
+			while (in.hasNext()) {
+				String fullLine = in.nextLine();
+//				AStack<String> opStack = new AStack<String>(fullLine.length());
+//				AStack<Double> numStack = new AStack<Double>(fullLine.length());
+				
+				System.out.println(fullLine);
+				
+			}
+
+		}
+		catch (FileNotFoundException e)
+		{			
+			System.out.println("No argument nor file was found.");
+		}	
+
+//	/*	private static void computeTwo(AStack<String> ops, AStack<Double> nums) {
+//			double num2 = nums.pop();
+//			double num1 = nums.pop();
+//			char peek = ops.peek();
+//
+//			if (peek == '*') {
+//				ops.pop();
+//				nums.push(num1*num2);
+//			}
+//			else if (peek == '/') {
+//				ops.pop();
+//				nums.push(num1/num2);
+//			}
+//			else if (peek == '+') {
+//				ops.pop();
+//				nums.push(num1+num2);
+//			}
+//			else if (peek == '-') {
+//				ops.pop();
+//				nums.push(num1-num2);
+//			}
+//			else if (peek == '^') {
+//				ops.pop();
+//				nums.push(Math.pow(num1, num2));
+//			}	*/
+//		}
+
+	}
+}

@@ -1,0 +1,34 @@
+#include "BigInteger.h"
+#include <iostream>
+#include <sstream>
+#include <string>
+
+using namespace std;
+
+int main(int argc,char *argv[])
+{
+
+	cout<<"Running my tester!"<<endl;
+
+	//BigInteger a,b,result;
+	BigInteger a,b,c,d,e;
+	//a.init("123");
+	a.init("-123");
+	cout<<"first list: "<<a.toString()<<endl;
+	b.init("601");
+	cout<<"second list: "<<b.toString()<<endl;
+	c.init("-2");
+	cout<<c.toString()<<endl;
+	d.init("-987654321123456789");
+	cout<<d.toString()<<endl;
+	e.init("987654321123456789");
+	cout<<e.toString()<<endl;
+
+	BigInteger result;
+	result = a+b;
+
+	//cout<<"result list: "<< result.toString()<<endl;;
+
+	return 0;
+
+}

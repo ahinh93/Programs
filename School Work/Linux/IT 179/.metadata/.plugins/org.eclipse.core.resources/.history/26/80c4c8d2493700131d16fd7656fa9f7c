@@ -1,0 +1,26 @@
+/**
+ * @author Andrew Hinh copyright
+ * 10/22/13
+ * uid:816226600 
+ */
+
+package myUtil;
+
+
+public class AStack<T> extends Object implements Stack<T> {
+	
+	private int[] myArray = new int[];
+	
+	public AStack() {
+		myArray = new int[10];
+	}
+	
+	public AStack(int capacity) {
+		myArray = new int[capacity];
+	}
+	
+	public boolean empty() {
+		
+	}
+	
+}

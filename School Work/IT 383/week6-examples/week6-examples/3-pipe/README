@@ -1,0 +1,7 @@
+run the following programs in order:
+
+0. ./fdtest
+
+1. ./pipemini
+
+2. ./pipetest

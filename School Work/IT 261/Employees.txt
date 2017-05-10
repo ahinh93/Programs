@@ -1,0 +1,7 @@
+Landon Maupin|ID:1|Team Manager|Manager One|$19.27/hr
+Andrew Hinh|ID:2|Team Manager|Manager Two|$20.14/hr
+Carl Grimes|ID:3|Team Member|Average Grunt|$4.27/hr
+Beth Greene|ID:6|Team Member|Average Grunt|$4.91/hr
+Daryl Dixon|ID:5|Team Member|Average Grunt|$6.0/hr
+Rick Grimes|ID:4|Team Member|Average Grunt|$3.36/hr
+Jane Smith|ID:7|Test Job|Test Desc|$472991.13/hr

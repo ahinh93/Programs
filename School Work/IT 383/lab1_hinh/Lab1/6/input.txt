@@ -1,0 +1,37 @@
+In the not-so-distant future, you'll be walking down the street and your phone will beep and offer you a few lunch suggestions just around the corner, or it may tell you that the museum across the street is having an exhibit of that artist you once Googled.
+
+That's Google CEO Eric Schmidt's vision of the future.
+Learn to use R PDF cover
+Learn R programming basics with our PDF
+
+It's all here in one place -- our popular "Beginner's guide to using R." You'll learn how to get your
+Read Now
+
+In a keynote address at Tuesday's TechCrunch Disrupt conference in San Francisco, Schmidt said that at some point in the future, Google's search technology will be autonomous, meaning that it will offer you search results even before you've looked for them.
+
+"While it sounds like science fiction to suggest that technology can help search for things you don't even yet know you need, the opportunities to improve human discovery are very real in the future," said Augie Ray, an analyst at Forrester Research. "Combining a person's context -- where they are, who they're with -- with their past opinions and actions, and the opinions and actions of others, can create tremendous value for people."
+ADVERTISING
+
+While both Google and its main search rival, Microsoft Bing, have been making significant advances in the past year -- Google Goggles real-time search, for example -- autonomous search would be a major shift. It would make typing in queries and getting lists of result options rather archaic if you could get information before you even realized you wanted it.
+
+Autonomous search would take your past experiences, likes and dislikes and use them, along with geolocation information, to give you information about things that might interest you wherever you might be.
+
+"Imagine you're someone who has positively rated Mexican restaurants in the past," Ray said. "As you drive through town around lunchtime, your device can alert you to a well-rated Mexican restaurant that is nearby and likely to suit your tastes. It is the combination of social media, individual preferences and context that creates the opportunity for proactive discovery rather than reactive search. This isn't about opening Yelp and seeing the same search results as everyone else. It's about having the hardware and software that intuits the things you really care about."
+
+Hadley Reynolds, an analyst at IDC, said this capability would be a major advance for search technology.
+
+"Moving to a model in which the search system anticipates your intentions and makes suggestions is a big step forward from the box and links lists we have today," Reynolds said. "Google wants to lead in this trend, and they have already created the technical innovations that will allow them to do so."
+
+Analysts Rob Enderle of Enderle Group and Brad Shimmin of Current Analysis contended that users may not have to wait long to experience it.
+
+"It certainly sounds both feasible and desirable from a technological and business point of view," Shimmin said. "Already, Google has achieved a part of this goal within its Google Maps application, tying storefront information with map locations. All that's needed is geolocation services and push-based communications, both of which exist now on most mobile devices."
+
+Enderle said this kind of technology could be a reality within five years. However, it could be a big drain on the battery life of mobile devices.
+
+But the bigger issue could be privacy.
+
+For this type of search technology to work, your phone and Google would need to know where you are all the time. And many people might have a big problem with that.
+
+"It could be both really annoying and create massive privacy concerns, as people don't, for the most part, like the idea of Google -- or anyone, really -- watching them all the time," Enderle said. "Google tends to ignore the human part of the equation and get far too excited about technology and put far too little time into thinking about how to best present it. This is a case in point because I actually like this idea, and it came across as creepy to me as well."
+
+Sharon Gaudin covers the Internet and Web 2.0, emerging technologies, and desktop and laptop chips for Computerworld. Follow Sharon on Twitter at @sgaudin or subscribe to Sharon's RSS feed . Her e-mail address is sgaudin@computerworld.com.

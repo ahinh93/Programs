@@ -1,0 +1,21 @@
+#ifndef DSLIB_H
+#define DSLIB_H
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+
+typedef struct 
+{
+	int cap;
+	int currSize;
+	int *arr;
+}stack;
+
+void stack_init();
+int stack_size(stack *s);
+int stack_pop(stack *s);
+void stack_push(stack *s, int e);
+void stack_deallocate(stack *s);
+
+#endif

@@ -1,0 +1,5 @@
+multi: multi.c
+	gcc -pthraed -o multi multi.c
+
+clean:
+	rm -f multi

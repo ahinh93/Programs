@@ -1,0 +1,2 @@
+
+initialize record & retrieve hours

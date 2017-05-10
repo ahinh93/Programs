@@ -1,0 +1,27 @@
+/**
+ * 10/23/13 
+ * @author Andrew Hinh
+ */
+import myUtil.*;
+import java.util.*;
+import java.io.*;
+
+public class Asg6 {
+	
+	public static void main(String[] args) {
+		String fileName = "/home/ahinh/IT179/Asg6/arithExps.txt";
+		
+		try
+		{
+			File file = new File(fileName);
+			Scanner in = new Scanner (file);			
+		}
+		catch (FileNotFoundException e)
+		{
+			System.out.println("Error in trying to find arithExps.txt");
+		}
+	}
+	
+	
+	
+}

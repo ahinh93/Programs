@@ -1,0 +1,32 @@
+all: BSTTest AVLTest SetTest
+
+AVLTest: AVLSetTest.o AVLSet.o
+	g++ -o AVLSetTest AVLSetTest.o AVLSet.o
+
+AVLSetTest.o: AVLSetTest.cpp
+	g++ -c AVLSetTest.cpp
+
+AVLSet.o: AVLSet.h AVLSet.cpp
+	g++ -c AVLSet.cpp
+
+BSTTest: BSTSetTest.o BSTSet.o
+	g++ -o BSTSetTest BSTSetTest.o BSTSet.o
+
+BSTSetTest.o: BSTSetTest.cpp
+	g++ -c BSTSetTest.cpp
+
+BSTSet.o: BSTSet.h BSTSet.cpp
+	g++ -c BSTSet.cpp
+	
+SetTest: SetTest.o StlSet.o
+	g++ -o SetTest SetTest.o StlSet.o
+
+SetTest.o: SetTest.cpp
+	g++ -c SetTest.cpp
+
+StlSet.o: StlSet.h StlSet.cpp
+	g++ -c StlSet.cpp
+	
+
+clean:
+	rm *.o

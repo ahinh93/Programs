@@ -1,0 +1,36 @@
+#ifndef _GRAPH_H_
+#define _GRAPH_H_
+
+#include <vector>
+#include <map>
+#include "climits"
+#include "PriorityQueue.h"
+
+using namespace std;
+
+class Graph
+{
+	public:
+		Graph(int numVertices);
+		~Graph();
+		void setEdge(int v1,int v2,double weight);
+		int getEdgeWeightWithTurns(int v1,int v2,int current_direction);
+		int getEdgeWeight(int v1,int v2);
+		vector<int> getShortestPathWithoutTurns(int start,int end);
+		vector<int> getShortestPathWithTurns(int start,int end,int start_direction);
+		void blockVertex(int v);
+	private:
+		struct node
+		{
+			bool traversed;
+			double distance;
+			node last;		
+			double weight;
+		};
+		map<int,map<int, node> >adj;
+		int numVertices;
+		PriorityQueue<node> q;
+
+};
+
+#endif

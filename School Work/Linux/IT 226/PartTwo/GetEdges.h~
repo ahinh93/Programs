@@ -1,0 +1,12 @@
+#ifndef GETEDGES_H
+#define GETEDGES_H
+
+class GetEdges : public ImageOperation
+{
+	
+	private:
+		static void thresholdForDisplay(Image& image);
+	public:
+		Image doOperation(Image image);
+};
+#endif

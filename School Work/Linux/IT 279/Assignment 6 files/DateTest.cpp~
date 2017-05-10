@@ -1,0 +1,7 @@
+#include "Date.h"
+
+int main(int argc, char**args)
+{
+	Date test;
+	return 0;
+}

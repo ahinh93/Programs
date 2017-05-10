@@ -1,0 +1,6 @@
+line a: 0
+line b: 4526
+line c: 4526
+line d: 4525
+
+getpid() is a function that returns the process' unique ID given by the operating system. When the parent process calls fork(), a child process with the exact same contents is created. The only unique identifier between them is their process id. getpid() will show that the parent pid is a value given by the OS and that getpid() for the child is usually one greater than the parent, otherwise any integer greater than the parent pid. 

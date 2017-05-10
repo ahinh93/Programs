@@ -1,0 +1,267 @@
+package myUtil;
+
+import myUtil.*;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+
+/**
+ * by Andrew Hinh copyright ahinh 816226600 10/8/13
+ * 
+ * @author ahinh
+ * 
+ */
+public class MySLinkedList<T> extends Object implements MyList<T>, Iterable<T> {
+	private int size;
+	private Node<T> head;
+
+	private class Node<E> {
+		private E data;
+		private Node<E> next;
+
+		private Node(E data, Node<E> next) {
+			this.data = data;
+			this.next = next;
+		}
+	}
+
+	public MySLinkedList() {
+		size = 0;
+		head = null;
+	}
+
+	public MySLinkedList(MySLinkedList<T> a) {
+		if (a.head == null) {
+			head = null;
+			size = 0;
+		return;
+		}
+		
+		head = new Node<T>(a.head.data, a.head.next);
+		size = a.size;
+		
+		Node<T> node = head;
+		while (node.next != null) {
+			node.next = new Node<T>(node.next.data, node.next.next);
+			node = node.next;
+		}
+	}
+
+	public void add(T item) {
+		add(size,item);
+	}
+
+	public void add(int at, T item) {
+
+		if (at > size || at < 0)
+			throw new IndexOutOfBoundsException("Can't add at " + at);
+
+		if (at == 0) {
+		head = new Node<T>(item, head);
+		size++;
+		}
+		else {
+		addAfter(getNode(at-1),item);
+		}
+	}
+	private void addAfter(Node<T> node, T item) {
+		node.next = new Node<T>(item, node.next);
+		size++;
+	}
+	
+	public boolean equals (Object o) {		
+		
+		if (this.getClass() != o.getClass())
+		{
+			return false;
+		}		
+
+		MySLinkedList l = (MySLinkedList) o;
+		if (this.size == l.size) {
+				for (int i = 0; i < size; i++) {
+				if (this.head == l.head) {		
+					this.head = this.head.next;
+					l.head = l.head.next;
+				}
+				else
+					return false;
+			}
+			return true;
+		}
+		return false;
+		
+	}
+	
+	public T get (int at) {
+		int counter = 0;
+		if (at >= size || at < 0)
+			throw new IndexOutOfBoundsException();
+		Node<T> theHead = head;
+		while (counter < at)
+		{
+			theHead = theHead.next;
+			counter++;
+		}
+		return theHead.data;
+	}
+	
+	private Node<T> getNode(int at) {
+		if (at < 0 || at >= size)
+			throw new IndexOutOfBoundsException();
+		Node<T> theNode = head;
+		int count = 0;
+		while(count < at) {
+			theNode = theNode.next;
+			count++;
+		}
+		return theNode;
+	}
+	
+	public int indexOf(T data) {
+		if (head == null)
+			return -1;
+		Node<T> theNode = head;
+		int counter = 0;
+		while(!theNode.data.equals(data)) {
+			theNode = theNode.next;
+			if (theNode==null)
+				return -1;
+			counter ++;
+		}
+		return counter;
+	}
+	
+	public Iterator<T> iterator() {
+		return new myIterator();
+	}
+	
+	public T remove (int at) {
+		int counter = 0;
+		if (at >= size || at < 0)
+			throw new IndexOutOfBoundsException();
+		if (at == 0) {
+		T temp = head.data;
+		head = head.next;
+		size--;
+		return temp;
+		}
+		return removeNext(getNode(at-1));
+	}
+	
+	private T removeNext(Node<T> node) {
+		T temp = node.next.data;
+		node.next = node.next.next;
+		size--;
+		return temp;
+	}
+	
+	public T set(int at, T data) {
+		if (at >= size || at < 0)
+			throw new IndexOutOfBoundsException();
+		Node<T> theNode = head;
+		
+		int counter = 0;
+		while (counter < at) {
+			theNode = theNode.next;
+			counter++;
+		}
+		
+		T oldValue = theNode.data;
+		theNode.data = data;
+		return oldValue;		
+	}
+	
+	public int size() {
+		return this.size;
+	}
+	
+	public Object[] toArray() {
+		Object[] a = new Object[size];
+		Node<T> currentNode = head;
+		for (int i = 0; i< a.length; i++) {
+			a[i] = currentNode.data;
+			currentNode = currentNode.next;
+		}
+		return a;
+	}
+	
+	public <K> K[] toArray(K[] a)
+	{
+		if (a == null)
+			throw new NullPointerException("Element is null");
+		if (a.length < size)
+		{
+			a = (K[]) new Object[size];
+		}
+		
+		Node<T> node = head;
+		for (int i = 0; i < a.length; i++)
+		{
+			if (i <size) {
+				a[i] = (K) node.data;
+				node = node.next;
+			}
+			else {
+				a[i] = null;
+			}
+				
+		}
+		return a;
+	}
+	
+	public String toString() {
+		Node<T> c=head;
+
+		String outString="[";
+
+		while (c != null) {
+			outString += c.data.toString()+",";
+			c = c.next;
+		}
+
+		return 
+			outString.substring(0,outString.length()-1)+"]";
+}
+
+	public class myIterator implements Iterator<T> {
+		
+		private Node<T> prevNode = null;
+		private Node<T> seenNode = null;
+		private Node<T> nextNode = head;
+		
+		public boolean hasNext() {
+			return (nextNode != null);
+		}
+		
+		
+		public T next()
+		{
+			if (!hasNext())
+				throw new NoSuchElementException();
+			if (seenNode != null)
+				prevNode = seenNode;
+			
+			seenNode = nextNode;
+			nextNode = nextNode.next;
+			return seenNode.data;
+		}
+		
+		public void remove() {
+			if (seenNode == null)
+				throw new IllegalStateException("IllegalStateException");
+			
+			if (seenNode == head) {
+				head = seenNode.next;
+			}
+			else {
+				prevNode.next = nextNode;
+			}
+			
+			seenNode = null;
+			size--;
+				
+		}
+		
+	}
+}
+

@@ -1,0 +1,107 @@
+/**
+ * Written by Andrew Hinh
+ * @author ahinh
+ * Copyright
+ * 9/5/13
+ */
+import java.util.*;
+import java.io.*;
+
+public class Asg2 
+{
+	//wants me to create scanner as static
+	static Scanner in = null;
+		
+	public static void main(String[] args)
+	{
+		String fileName = "/home/ahinh/IT179/Asg2/jj.txt";
+		
+		try
+		{
+			File file = new File(fileName);
+			in = new Scanner (file);			
+		}
+		catch (FileNotFoundException e)
+		{
+			System.out.println("Error in trying to find jj.txt");
+		}
+		
+		//begin count of what line scanner is on
+		int count = 1;
+		
+		//check to make sure scanner has another line to read, if not, then end
+		while(in.hasNextLine())
+		{
+			//create variable to store line
+			String s = in.nextLine();
+			/*
+			 * Initiate jolly jump method, will return size of jump
+			 * -1 if line is not a jolly jump
+			 */
+			
+			//jollyJumpCheck(s);
+			
+		}
+		
+	}
+	/**
+	 * Will check if line is a jolly jump
+	 * @param s A string of numbers separated by space
+	 * @return A size of the jolly jump; -1 if not a jolly jump
+	 */
+
+	public int jollyJumpCheck(String s)
+	{
+		StringTokenizer tokens = new StringTokenizer(s);
+		ArrayList<String> pos = new ArrayList<String>();
+		
+		int a;
+		
+		//if there are more tokens, then add it to array list pos
+		while(tokens.hasMoreTokens())
+		{
+			String sj = tokens.nextToken();
+			pos.add(sj);			
+		}
+		
+		//converts array list of strings into array list of integers
+		for(int i = 0; i < pos.size(); i++)
+		{
+				a = Integer.parseInt(pos.get(i));
+				pos(i) = a;
+		}
+		
+		//create array of booleans 
+		boolean[] values = new boolean[pos.size()];
+		boolean repeat = false;
+		
+		//assign each value between jump in array as true
+		//if value is assigned to true twice, exit since line is not jolly jumper
+		for (int i = pos.size(); i > 1 && !repeat ; i--)
+		{
+			if (values[pos(i-1)-pos(i-2)])
+			{
+				repeat = true;
+			}
+			else
+			{
+				values[pos(i-1)-pos(i-2)] = true;
+			}		
+		}
+		
+		//check if array list is all true, if so return size of jump; -1 if not a jump
+		
+		boolean containsFalse = false;
+		
+		for (int k = 1; i < pos.size() && !containsFalse; k++)
+		{
+			if (values[k] == false)
+			{
+				containsFalse = true;
+			}
+			return k;
+		}
+		return -1;
+	}
+
+}

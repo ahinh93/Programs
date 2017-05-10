@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;AStack.java&apos; to &apos;Asg5&apos;&#x0A;- Original project: &apos;myUtil&apos;&#x0A;- Destination element: &apos;Asg5&apos;&#x0A;- Original element: &apos;AStack.java&apos;" description="Copy file" destination="=Asg5" element1="AStack.java" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1382027177076" units="0" version="1.0"/>
+</session>

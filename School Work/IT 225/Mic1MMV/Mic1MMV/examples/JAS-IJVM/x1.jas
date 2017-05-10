@@ -1,0 +1,24 @@
+.main
+
+.var
+x
+y
+z
+.end-var
+
+IN
+ISTORE x
+IN
+ISTORE y
+ILOAD x
+ILOAD y
+IADD
+IN
+ISTORE z
+ILOAD z
+ISUB
+OUT
+
+.end-main
+
+

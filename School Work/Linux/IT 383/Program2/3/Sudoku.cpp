@@ -1,0 +1,40 @@
+#include "Sudoku.h"
+
+Sudoku::Sudoku()
+{
+	for(int i = 0; i < 9; i++)
+	{
+		for(int k = 0; k < 9; k++)
+		{
+			board[i][k] = -1;
+		}
+	}
+}
+
+void Sudoku::insertLine(string line)
+{
+	bool addedLine = false;	
+
+	for(int i = 0; i < 9 && !addedLine; i++)
+	{
+		if(board[i][0] == -1)
+		{
+			//cout<< i <<": "<<line<< endl;
+			int temp;
+			int counter = 0;
+			//insert line into next available row, starting at row 0
+			istringstream is(line);
+			while(is>>temp)
+			{	
+				board[i][counter] = temp;				
+
+				counter++;
+			}
+			addedLine = true;
+		}
+	}
+}
+Sudoku::~Sudoku()
+{
+
+}

@@ -1,0 +1,435 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0xa0718b2c, pid=13542, tid=3066452848
+#
+# JRE version: Java(TM) SE Runtime Environment (7.0_60-b19) (build 1.7.0_60-b19)
+# Java VM: Java HotSpot(TM) Client VM (24.60-b09 mixed mode linux-x86 )
+# Problematic frame:
+# C  [libstdc++.so.6+0xb9b2c]  std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&)+0x1c
+#
+# Core dump written. Default location: /home/ahinh/IT 279-2/Assignment 5 files/core or core.13542 (max size 1 kB). To ensure a full core dump, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.sun.com/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x08050c00):  JavaThread "main" [_thread_in_native, id=13543, stack(0xb6c15000,0xb6c66000)]
+
+siginfo:si_signo=SIGSEGV: si_errno=0, si_code=1 (SEGV_MAPERR), si_addr=0x001fe9b0
+
+Registers:
+EAX=0xb6c64f6c, EBX=0xa0747ff4, ECX=0x00000338, EDX=0xb6c64f6c
+ESP=0xb6c64bc0, EBP=0xb6c64c08, ESI=0x001fe9b4, EDI=0x08050c00
+EIP=0xa0718b2c, EFLAGS=0x00010282, CR2=0x001fe9b0
+
+Top of Stack: (sp=0xb6c64bc0)
+0xb6c64bc0:   a066f000 a0747ff4 b6c64e14 b6c64e1c
+0xb6c64bd0:   b6c64fc8 b7846120 ffffffff a0747ff4
+0xb6c64be0:   b6c64e14 b0e95af8 b0e95af4 a0a75f90
+0xb6c64bf0:   b6c64f80 b6c64f6c b6c64fc8 b0e95af8
+0xb6c64c00:   b0e95af4 b0e95af8 b6c64fc8 a0a758f7
+0xb6c64c10:   b6c64f80 b6c64f6c a0a77239 b0a12ce4
+0xb6c64c20:   b6c64c64 b0a706f8 00000000 00000002
+0xb6c64c30:   00000000 b6c64c60 657a616d 7830312d 
+
+Instructions: (pc=0xa0718b2c)
+0xa0718b0c:   e1 90 90 90 83 ec 2c 8b 44 24 34 89 74 24 28 89
+0xa0718b1c:   5c 24 24 e8 97 1e f9 ff 81 c3 d0 f4 02 00 8b 30
+0xa0718b2c:   8b 4e fc 8d 46 f4 85 c9 78 1a 3b 83 74 fc ff ff
+0xa0718b3c:   75 2e 8b 44 24 30 8b 5c 24 24 89 30 8b 74 24 28 
+
+Register to memory mapping:
+
+EAX=0xb6c64f6c is pointing into the stack for thread: 0x08050c00
+EBX=0xa0747ff4: <offset 0xe8ff4> in /usr/lib/libstdc++.so.6 at 0xa065f000
+ECX=0x00000338 is an unknown value
+EDX=0xb6c64f6c is pointing into the stack for thread: 0x08050c00
+ESP=0xb6c64bc0 is pointing into the stack for thread: 0x08050c00
+EBP=0xb6c64c08 is pointing into the stack for thread: 0x08050c00
+ESI=0x001fe9b4 is an unknown value
+EDI=0x08050c00 is a thread
+
+
+Stack: [0xb6c15000,0xb6c66000],  sp=0xb6c64bc0,  free space=318k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [libstdc++.so.6+0xb9b2c]  std::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::string const&)+0x1c
+C  [libSolveMaze.so+0x58f7]  Java_SolveMaze_findpath+0x39b
+j  SolveMaze.findpath(Ljava/lang/String;)Z+0
+j  MazeDraw.main([Ljava/lang/String;)V+325
+v  ~StubRoutines::call_stub
+V  [libjvm.so+0x2ade15]  JavaCalls::call_helper(JavaValue*, methodHandle*, JavaCallArguments*, Thread*)+0x315
+V  [libjvm.so+0x402ee9]  os::os_exception_wrapper(void (*)(JavaValue*, methodHandle*, JavaCallArguments*, Thread*), JavaValue*, methodHandle*, JavaCallArguments*, Thread*)+0x19
+V  [libjvm.so+0x2aca8f]  JavaCalls::call(JavaValue*, methodHandle, JavaCallArguments*, Thread*)+0x2f
+V  [libjvm.so+0x2e9e82]  jni_invoke_static(JNIEnv_*, JavaValue*, _jobject*, JNICallType, _jmethodID*, JNI_ArgumentPusher*, Thread*)+0x242
+V  [libjvm.so+0x3000aa]  jni_CallStaticVoidMethod+0xca
+C  [libjli.so+0x2e8d]  JavaMain+0x8bd
+C  [libpthread.so.0+0x6879]  start_thread+0xd9
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  SolveMaze.findpath(Ljava/lang/String;)Z+0
+j  MazeDraw.main([Ljava/lang/String;)V+325
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x081de400 JavaThread "AWT-EventQueue-0" [_thread_blocked, id=13554, stack(0xa0781000,0xa07d2000)]
+  0x081dd400 JavaThread "AWT-Shutdown" [_thread_blocked, id=13553, stack(0xa07d2000,0xa0823000)]
+  0x081c3000 JavaThread "AWT-XAWT" daemon [_thread_in_native, id=13552, stack(0xa0823000,0xa0874000)]
+  0x081b2c00 JavaThread "Java2D Disposer" daemon [_thread_blocked, id=13551, stack(0xa0885000,0xa08d6000)]
+  0x080bf000 JavaThread "Service Thread" daemon [_thread_blocked, id=13549, stack(0xa0bf9000,0xa0c4a000)]
+  0x080bd000 JavaThread "C1 CompilerThread0" daemon [_thread_blocked, id=13548, stack(0xa0c4a000,0xa0ccb000)]
+  0x080bb400 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=13547, stack(0xa0ccb000,0xa0d1c000)]
+  0x080a5400 JavaThread "Finalizer" daemon [_thread_blocked, id=13546, stack(0xa0e78000,0xa0ec9000)]
+  0x080a3c00 JavaThread "Reference Handler" daemon [_thread_blocked, id=13545, stack(0xa0ec9000,0xa0f1a000)]
+=>0x08050c00 JavaThread "main" [_thread_in_native, id=13543, stack(0xb6c15000,0xb6c66000)]
+
+Other Threads:
+  0x080a1000 VMThread [stack: 0xa0f1a000,0xa0f9b000] [id=13544]
+  0x080ca000 WatcherThread [stack: 0xa0b78000,0xa0bf9000] [id=13550]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ def new generation   total 4736K, used 2050K [0xa1200000, 0xa1720000, 0xa64a0000)
+  eden space 4224K,  48% used [0xa1200000, 0xa1400978, 0xa1620000)
+  from space 512K,   0% used [0xa1620000, 0xa1620000, 0xa16a0000)
+  to   space 512K,   0% used [0xa16a0000, 0xa16a0000, 0xa1720000)
+ tenured generation   total 10624K, used 0K [0xa64a0000, 0xa6f00000, 0xb0a00000)
+   the space 10624K,   0% used [0xa64a0000, 0xa64a0000, 0xa64a0200, 0xa6f00000)
+ compacting perm gen  total 12288K, used 4695K [0xb0a00000, 0xb1600000, 0xb4a00000)
+   the space 12288K,  38% used [0xb0a00000, 0xb0e95ca8, 0xb0e95e00, 0xb1600000)
+No shared spaces configured.
+
+Card table byte_map: [0xb4a98000,0xb4b35000] byte_map_base: 0xb458f000
+
+Polling page: 0xb77ff000
+
+Code Cache  [0xb4bb5000, 0xb4c65000, 0xb6bb5000)
+ total_blobs=274 nmethods=61 adapters=150 free_code_cache=32064Kb largest_free_block=32834432
+
+Compilation events (10 events):
+Event: 0.171 Thread 0x080bd000   57             java.util.regex.Pattern$BmpCharProperty::match (50 bytes)
+Event: 0.171 Thread 0x080bd000 nmethod 57 0xb4c63b88 code [0xb4c63cb0, 0xb4c63df0]
+Event: 0.171 Thread 0x080bd000   58             java.util.regex.Pattern$BranchConn::match (11 bytes)
+Event: 0.171 Thread 0x080bd000 nmethod 58 0xb4c63ec8 code [0xb4c63fd0, 0xb4c6407c]
+Event: 0.171 Thread 0x080bd000   59             java.util.regex.Matcher::region (76 bytes)
+Event: 0.171 Thread 0x080bd000 nmethod 59 0xb4c64108 code [0xb4c64280, 0xb4c6451c]
+Event: 0.171 Thread 0x080bd000   60             java.util.regex.Pattern$LastNode::match (45 bytes)
+Event: 0.171 Thread 0x080bd000 nmethod 60 0xb4c64708 code [0xb4c64800, 0xb4c64900]
+Event: 0.171 Thread 0x080bd000   61             java.util.regex.Matcher::end (22 bytes)
+Event: 0.172 Thread 0x080bd000 nmethod 61 0xb4c64a08 code [0xb4c64b10, 0xb4c64c0c]
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (10 events):
+Event: 0.018 Thread 0x08050c00 Threw 0xa120f7e8 at /HUDSON/workspace/7u-2-build-linux-i586/jdk7u60/1081/hotspot/src/share/vm/prims/jni.cpp:3991
+Event: 0.039 Thread 0x08050c00 Threw 0xa1243f30 at /HUDSON/workspace/7u-2-build-linux-i586/jdk7u60/1081/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 0.059 Thread 0x08050c00 Threw 0xa125f6a0 at /HUDSON/workspace/7u-2-build-linux-i586/jdk7u60/1081/hotspot/src/share/vm/prims/jni.cpp:717
+Event: 0.060 Thread 0x08050c00 Threw 0xa125ff08 at /HUDSON/workspace/7u-2-build-linux-i586/jdk7u60/1081/hotspot/src/share/vm/prims/jni.cpp:717
+Event: 0.072 Thread 0x08050c00 Threw 0xa127d758 at /HUDSON/workspace/7u-2-build-linux-i586/jdk7u60/1081/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 0.072 Thread 0x08050c00 Threw 0xa127d870 at /HUDSON/workspace/7u-2-build-linux-i586/jdk7u60/1081/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 0.072 Thread 0x08050c00 Threw 0xa127f940 at /HUDSON/workspace/7u-2-build-linux-i586/jdk7u60/1081/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 0.072 Thread 0x08050c00 Threw 0xa127fa58 at /HUDSON/workspace/7u-2-build-linux-i586/jdk7u60/1081/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 0.173 Thread 0x08050c00 Threw 0xa13f04f8 at /HUDSON/workspace/7u-2-build-linux-i586/jdk7u60/1081/hotspot/src/share/vm/prims/jni.cpp:717
+Event: 0.176 Thread 0x08050c00 Threw 0xa13f1928 at /HUDSON/workspace/7u-2-build-linux-i586/jdk7u60/1081/hotspot/src/share/vm/prims/jvm.cpp:1244
+
+Events (10 events):
+Event: 0.174 loading class 0x080ccb80
+Event: 0.174 loading class 0x080ccb80 done
+Event: 0.174 loading class 0x080ccb58
+Event: 0.174 loading class 0x080ccbd8
+Event: 0.174 loading class 0x080ccbd8 done
+Event: 0.174 loading class 0x080ccb58 done
+Event: 0.174 loading class 0xa11b0940
+Event: 0.174 loading class 0xa11b0940 done
+Event: 0.176 loading class 0x080fb338
+Event: 0.176 loading class 0x080fb338 done
+
+
+Dynamic libraries:
+08048000-08049000 r-xp 00000000 08:02 599244     /usr/local/java/jdk1.7.0_60/bin/java
+08049000-0804a000 rw-p 00000000 08:02 599244     /usr/local/java/jdk1.7.0_60/bin/java
+0804a000-0821e000 rw-p 00000000 00:00 0          [heap]
+a0511000-a065f000 rw-p 00000000 00:00 0 
+a065f000-a0744000 r-xp 00000000 08:02 377022     /usr/lib/libstdc++.so.6.0.17
+a0744000-a0748000 r--p 000e5000 08:02 377022     /usr/lib/libstdc++.so.6.0.17
+a0748000-a0749000 rw-p 000e9000 08:02 377022     /usr/lib/libstdc++.so.6.0.17
+a0749000-a0750000 rw-p 00000000 00:00 0 
+a0781000-a0784000 ---p 00000000 00:00 0 
+a0784000-a07d2000 rw-p 00000000 00:00 0 
+a07d2000-a07d5000 ---p 00000000 00:00 0 
+a07d5000-a0823000 rw-p 00000000 00:00 0 
+a0823000-a0826000 ---p 00000000 00:00 0 
+a0826000-a0874000 rw-p 00000000 00:00 0 
+a0874000-a0878000 r-xp 00000000 08:02 132511     /usr/lib/libXfixes.so.3.1.0
+a0878000-a0879000 r--p 00003000 08:02 132511     /usr/lib/libXfixes.so.3.1.0
+a0879000-a087a000 rw-p 00004000 08:02 132511     /usr/lib/libXfixes.so.3.1.0
+a087a000-a0883000 r-xp 00000000 08:02 132672     /usr/lib/libXcursor.so.1.0.2
+a0883000-a0884000 r--p 00008000 08:02 132672     /usr/lib/libXcursor.so.1.0.2
+a0884000-a0885000 rw-p 00009000 08:02 132672     /usr/lib/libXcursor.so.1.0.2
+a0885000-a0888000 ---p 00000000 00:00 0 
+a0888000-a08d6000 rw-p 00000000 00:00 0 
+a08d6000-a08f2000 r-xp 00000000 08:02 19947      /usr/lib/libxcb.so.1.0.0
+a08f2000-a08f3000 r--p 0001b000 08:02 19947      /usr/lib/libxcb.so.1.0.0
+a08f3000-a08f4000 rw-p 0001c000 08:02 19947      /usr/lib/libxcb.so.1.0.0
+a08f4000-a08f5000 r-xp 00000000 08:02 19937      /usr/lib/libxcb-xlib.so.0.0.0
+a08f5000-a08f6000 r--p 00000000 08:02 19937      /usr/lib/libxcb-xlib.so.0.0.0
+a08f6000-a08f7000 rw-p 00001000 08:02 19937      /usr/lib/libxcb-xlib.so.0.0.0
+a08f7000-a08f9000 r-xp 00000000 08:02 19419      /usr/lib/libXau.so.6.0.0
+a08f9000-a08fa000 r--p 00001000 08:02 19419      /usr/lib/libXau.so.6.0.0
+a08fa000-a08fb000 rw-p 00002000 08:02 19419      /usr/lib/libXau.so.6.0.0
+a08fb000-a0904000 r-xp 00000000 08:02 132686     /usr/lib/libXi.so.6.0.0
+a0904000-a0905000 r--p 00008000 08:02 132686     /usr/lib/libXi.so.6.0.0
+a0905000-a0906000 rw-p 00009000 08:02 132686     /usr/lib/libXi.so.6.0.0
+a0906000-a0a35000 r-xp 00000000 08:02 132408     /usr/lib/libX11.so.6.2.0
+a0a35000-a0a36000 r--p 0012e000 08:02 132408     /usr/lib/libX11.so.6.2.0
+a0a36000-a0a39000 rw-p 0012f000 08:02 132408     /usr/lib/libX11.so.6.2.0
+a0a39000-a0a48000 r-xp 00000000 08:02 132513     /usr/lib/libXext.so.6.4.0
+a0a48000-a0a49000 r--p 0000e000 08:02 132513     /usr/lib/libXext.so.6.4.0
+a0a49000-a0a4a000 rw-p 0000f000 08:02 132513     /usr/lib/libXext.so.6.4.0
+a0a61000-a0a6e000 r-xp 00000000 08:02 145962     /lib/libgcc_s.so.1
+a0a6e000-a0a6f000 r--p 0000c000 08:02 145962     /lib/libgcc_s.so.1
+a0a6f000-a0a70000 rw-p 0000d000 08:02 145962     /lib/libgcc_s.so.1
+a0a70000-a0a79000 r-xp 00000000 00:13 543326     /home/ahinh/IT 279-2/Assignment 5 files/libSolveMaze.so
+a0a79000-a0a7a000 r--p 00008000 00:13 543326     /home/ahinh/IT 279-2/Assignment 5 files/libSolveMaze.so
+a0a7a000-a0a7b000 rw-p 00009000 00:13 543326     /home/ahinh/IT 279-2/Assignment 5 files/libSolveMaze.so
+a0a7b000-a0ac4000 r-xp 00000000 08:02 599112     /usr/local/java/jdk1.7.0_60/jre/lib/i386/xawt/libmawt.so
+a0ac4000-a0ac6000 rw-p 00049000 08:02 599112     /usr/local/java/jdk1.7.0_60/jre/lib/i386/xawt/libmawt.so
+a0ac6000-a0ac7000 rw-p 00000000 00:00 0 
+a0ac7000-a0b4d000 r-xp 00000000 08:02 591217     /usr/local/java/jdk1.7.0_60/jre/lib/i386/libawt.so
+a0b4d000-a0b54000 rw-p 00086000 08:02 591217     /usr/local/java/jdk1.7.0_60/jre/lib/i386/libawt.so
+a0b54000-a0b78000 rw-p 00000000 00:00 0 
+a0b78000-a0b79000 ---p 00000000 00:00 0 
+a0b79000-a0bf9000 rw-p 00000000 00:00 0 
+a0bf9000-a0bfc000 ---p 00000000 00:00 0 
+a0bfc000-a0c4a000 rw-p 00000000 00:00 0 
+a0c4a000-a0c4d000 ---p 00000000 00:00 0 
+a0c4d000-a0ccb000 rw-p 00000000 00:00 0 
+a0ccb000-a0cce000 ---p 00000000 00:00 0 
+a0cce000-a0d1c000 rw-p 00000000 00:00 0 
+a0d1c000-a0d5b000 r--p 00000000 08:02 211246     /usr/lib/locale/en_US.utf8/LC_CTYPE
+a0d5b000-a0e78000 r--p 00000000 08:02 211247     /usr/lib/locale/en_US.utf8/LC_COLLATE
+a0e78000-a0e7b000 ---p 00000000 00:00 0 
+a0e7b000-a0ec9000 rw-p 00000000 00:00 0 
+a0ec9000-a0ecc000 ---p 00000000 00:00 0 
+a0ecc000-a0f1a000 rw-p 00000000 00:00 0 
+a0f1a000-a0f1b000 ---p 00000000 00:00 0 
+a0f1b000-a0fe6000 rw-p 00000000 00:00 0 
+a0fe6000-a11a5000 r--s 039e2000 08:02 575700     /usr/local/java/jdk1.7.0_60/jre/lib/rt.jar
+a11a5000-a1720000 rw-p 00000000 00:00 0 
+a1720000-a64a0000 rw-p 00000000 00:00 0 
+a64a0000-a6f00000 rw-p 00000000 00:00 0 
+a6f00000-b0a00000 rw-p 00000000 00:00 0 
+b0a00000-b1600000 rw-p 00000000 00:00 0 
+b1600000-b4a00000 rw-p 00000000 00:00 0 
+b4a01000-b4a02000 rw-p 00000000 00:00 0 
+b4a02000-b4a07000 r-xp 00000000 08:02 132696     /usr/lib/libXtst.so.6.1.0
+b4a07000-b4a08000 r--p 00004000 08:02 132696     /usr/lib/libXtst.so.6.1.0
+b4a08000-b4a09000 rw-p 00005000 08:02 132696     /usr/lib/libXtst.so.6.1.0
+b4a09000-b4a11000 r-xp 00000000 08:02 132509     /usr/lib/libXrender.so.1.3.0
+b4a11000-b4a12000 r--p 00007000 08:02 132509     /usr/lib/libXrender.so.1.3.0
+b4a12000-b4a13000 rw-p 00008000 08:02 132509     /usr/lib/libXrender.so.1.3.0
+b4a13000-b4a14000 r--p 00000000 08:02 211228     /usr/lib/locale/en_US.utf8/LC_NUMERIC
+b4a14000-b4a15000 r--p 00000000 08:02 202698     /usr/lib/locale/en_US.utf8/LC_TIME
+b4a15000-b4a16000 r--p 00000000 08:02 202697     /usr/lib/locale/en_US.utf8/LC_MONETARY
+b4a16000-b4a17000 r--p 00000000 08:02 211159     /usr/lib/locale/en_US.utf8/LC_MESSAGES/SYS_LC_MESSAGES
+b4a17000-b4a18000 r--p 00000000 08:02 211174     /usr/lib/locale/en_US.utf8/LC_PAPER
+b4a18000-b4a19000 r--p 00000000 08:02 211187     /usr/lib/locale/en_US.utf8/LC_NAME
+b4a19000-b4a1a000 r--p 00000000 08:02 202694     /usr/lib/locale/en_US.utf8/LC_ADDRESS
+b4a1a000-b4a1b000 r--p 00000000 08:02 211158     /usr/lib/locale/en_US.utf8/LC_TELEPHONE
+b4a1b000-b4a1c000 r--p 00000000 08:02 211175     /usr/lib/locale/en_US.utf8/LC_MEASUREMENT
+b4a1c000-b4a23000 r--s 00000000 08:02 189278     /usr/lib/gconv/gconv-modules.cache
+b4a23000-b4a24000 r--p 00000000 08:02 202695     /usr/lib/locale/en_US.utf8/LC_IDENTIFICATION
+b4a24000-b4a2b000 rw-p 00000000 00:00 0 
+b4a2b000-b4a45000 rw-p 00000000 00:00 0 
+b4a45000-b4a4b000 rw-p 00000000 00:00 0 
+b4a4b000-b4a98000 rw-p 00000000 00:00 0 
+b4a98000-b4a9b000 rw-p 00000000 00:00 0 
+b4a9b000-b4ac1000 rw-p 00000000 00:00 0 
+b4ac1000-b4ac7000 rw-p 00000000 00:00 0 
+b4ac7000-b4b14000 rw-p 00000000 00:00 0 
+b4b14000-b4b1a000 rw-p 00000000 00:00 0 
+b4b1a000-b4b34000 rw-p 00000000 00:00 0 
+b4b34000-b4b38000 rw-p 00000000 00:00 0 
+b4b38000-b4bb5000 rw-p 00000000 00:00 0 
+b4bb5000-b4c65000 rwxp 00000000 00:00 0 
+b4c65000-b6bb5000 rw-p 00000000 00:00 0 
+b6bb5000-b6bcc000 r-xp 00000000 08:02 591236     /usr/local/java/jdk1.7.0_60/jre/lib/i386/libzip.so
+b6bcc000-b6bcd000 rw-p 00017000 08:02 591236     /usr/local/java/jdk1.7.0_60/jre/lib/i386/libzip.so
+b6bcd000-b6bd5000 rw-s 00000000 08:02 510507     /tmp/hsperfdata_ahinh/13542
+b6bd5000-b6c0a000 r--s 00000000 08:02 382079     /var/run/nscd/passwd
+b6c0a000-b6c0b000 rw-p 00000000 00:00 0 
+b6c0b000-b6c13000 r-xp 00000000 08:02 145873     /lib/librt-2.11.3.so
+b6c13000-b6c14000 r--p 00007000 08:02 145873     /lib/librt-2.11.3.so
+b6c14000-b6c15000 rw-p 00008000 08:02 145873     /lib/librt-2.11.3.so
+b6c15000-b6c18000 ---p 00000000 00:00 0 
+b6c18000-b6c66000 rw-p 00000000 00:00 0 
+b6c66000-b6c8c000 r-xp 00000000 08:02 145851     /lib/libm-2.11.3.so
+b6c8c000-b6c8d000 r--p 00026000 08:02 145851     /lib/libm-2.11.3.so
+b6c8d000-b6c8e000 rw-p 00027000 08:02 145851     /lib/libm-2.11.3.so
+b6c8e000-b721f000 r-xp 00000000 08:02 599115     /usr/local/java/jdk1.7.0_60/jre/lib/i386/client/libjvm.so
+b721f000-b7240000 rw-p 00591000 08:02 599115     /usr/local/java/jdk1.7.0_60/jre/lib/i386/client/libjvm.so
+b7240000-b7662000 rw-p 00000000 00:00 0 
+b7662000-b77c5000 r-xp 00000000 08:02 145843     /lib/libc-2.11.3.so
+b77c5000-b77c7000 r--p 00162000 08:02 145843     /lib/libc-2.11.3.so
+b77c7000-b77c8000 rw-p 00164000 08:02 145843     /lib/libc-2.11.3.so
+b77c8000-b77cb000 rw-p 00000000 00:00 0 
+b77cb000-b77ce000 r-xp 00000000 08:02 145849     /lib/libdl-2.11.3.so
+b77ce000-b77cf000 r--p 00002000 08:02 145849     /lib/libdl-2.11.3.so
+b77cf000-b77d0000 rw-p 00003000 08:02 145849     /lib/libdl-2.11.3.so
+b77d0000-b77e3000 r-xp 00000000 08:02 575651     /usr/local/java/jdk1.7.0_60/lib/i386/jli/libjli.so
+b77e3000-b77e4000 rw-p 00012000 08:02 575651     /usr/local/java/jdk1.7.0_60/lib/i386/jli/libjli.so
+b77e4000-b77fb000 r-xp 00000000 08:02 145869     /lib/libpthread-2.11.3.so
+b77fb000-b77fc000 r--p 00016000 08:02 145869     /lib/libpthread-2.11.3.so
+b77fc000-b77fd000 rw-p 00017000 08:02 145869     /lib/libpthread-2.11.3.so
+b77fd000-b77ff000 rw-p 00000000 00:00 0 
+b77ff000-b7800000 r--p 00000000 00:00 0 
+b7800000-b7823000 r-xp 00000000 08:02 591213     /usr/local/java/jdk1.7.0_60/jre/lib/i386/libjava.so
+b7823000-b7824000 rw-p 00023000 08:02 591213     /usr/local/java/jdk1.7.0_60/jre/lib/i386/libjava.so
+b7824000-b782f000 r-xp 00000000 08:02 591232     /usr/local/java/jdk1.7.0_60/jre/lib/i386/libverify.so
+b782f000-b7830000 rw-p 0000b000 08:02 591232     /usr/local/java/jdk1.7.0_60/jre/lib/i386/libverify.so
+b7830000-b7831000 rw-p 00000000 00:00 0 
+b7831000-b7850000 r-xp 00000000 08:02 145836     /lib/ld-2.11.3.so
+b7850000-b7851000 r--p 0001e000 08:02 145836     /lib/ld-2.11.3.so
+b7851000-b7852000 rw-p 0001f000 08:02 145836     /lib/ld-2.11.3.so
+bf98d000-bf98e000 rwxp 00000000 00:00 0 
+bf9c0000-bf9e1000 rw-p 00000000 00:00 0          [stack]
+ffffe000-fffff000 r-xp 00000000 00:00 0          [vdso]
+
+VM Arguments:
+jvm_args: -Djava.library.path=. 
+java_command: MazeDraw maze-10x10
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+CLASSPATH=.:/home/ahinh/IT179
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/usr/lib/mit/sbin
+USERNAME=ahinh
+SHELL=/bin/bash
+DISPLAY=10.21.100.44:13.0
+HOSTTYPE=i386
+OSTYPE=linux
+MACHTYPE=i686-suse-linux
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0x50df30], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGBUS: [libjvm.so+0x50df30], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGFPE: [libjvm.so+0x404cb0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGPIPE: [libjvm.so+0x404cb0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGXFSZ: [libjvm.so+0x404cb0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGILL: [libjvm.so+0x404cb0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGUSR1: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGUSR2: [libjvm.so+0x4064b0], sa_mask[0]=0x00000000, sa_flags=0x10000004
+SIGHUP: [libjvm.so+0x4077b0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGINT: [libjvm.so+0x4077b0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGTERM: [libjvm.so+0x4077b0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGQUIT: [libjvm.so+0x4077b0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+
+
+---------------  S Y S T E M  ---------------
+
+OS:SUSE Linux Enterprise Desktop 11 (i586)
+VERSION = 11
+PATCHLEVEL = 2
+
+uname:Linux 3.0.13-0.27-pae #1 SMP Wed Feb 15 13:33:49 UTC 2012 (d73692b) i686
+libc:glibc 2.11.3 NPTL 2.11.3 
+rlimit: STACK 8192k, CORE 1k, NPROC 7861, NOFILE 8192, AS 2494560k
+load average:0.00 0.03 0.05
+
+/proc/meminfo:
+MemTotal:        1014908 kB
+MemFree:          146128 kB
+Buffers:           64552 kB
+Cached:           566676 kB
+SwapCached:            0 kB
+Active:           389032 kB
+Inactive:         414888 kB
+Active(anon):     172908 kB
+Inactive(anon):     5480 kB
+Active(file):     216124 kB
+Inactive(file):   409408 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+HighTotal:        135112 kB
+HighFree:           1924 kB
+LowTotal:         879796 kB
+LowFree:          144204 kB
+SwapTotal:       2103292 kB
+SwapFree:        2103292 kB
+Dirty:               112 kB
+Writeback:             0 kB
+AnonPages:        162536 kB
+Mapped:            71932 kB
+Shmem:              5644 kB
+Slab:              48796 kB
+SReclaimable:      37768 kB
+SUnreclaim:        11028 kB
+KernelStack:        1800 kB
+PageTables:         4168 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     2610744 kB
+Committed_AS:     645040 kB
+VmallocTotal:     122880 kB
+VmallocUsed:        7656 kB
+VmallocChunk:     114500 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:     45056 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:       10232 kB
+DirectMap2M:      892928 kB
+
+
+CPU:total 1 (1 cores per cpu, 1 threads per core) family 6 model 62 stepping 4, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, aes, tsc, tscinvbit
+
+/proc/cpuinfo:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2670 v2 @ 2.50GHz
+stepping	: 4
+cpu MHz		: 2500.000
+cache size	: 25600 KB
+fdiv_bug	: no
+hlt_bug		: no
+f00f_bug	: no
+coma_bug	: no
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts mmx fxsr sse sse2 ss nx rdtscp lm constant_tsc up arch_perfmon pebs bts xtopology tsc_reliable nonstop_tsc aperfmperf pni pclmulqdq ssse3 cx16 sse4_1 sse4_2 popcnt aes hypervisor lahf_lm ida arat xsaveopt pln pts dts
+bogomips	: 5000.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 40 bits physical, 48 bits virtual
+power management:
+
+
+
+Memory: 4k page, physical 1014908k(146128k free), swap 2103292k(2103292k free)
+
+vm_info: Java HotSpot(TM) Client VM (24.60-b09) for linux-x86 JRE (1.7.0_60-b19), built on May  7 2014 13:54:28 by "java_re" with gcc 4.3.0 20080428 (Red Hat 4.3.0-8)
+
+time: Thu Apr 16 12:53:19 2015
+elapsed time: 0 seconds
+

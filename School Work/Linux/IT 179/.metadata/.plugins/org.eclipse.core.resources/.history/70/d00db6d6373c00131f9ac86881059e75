@@ -1,0 +1,10 @@
+import java.util.*;
+public class test {
+public static void main(String[] args) {
+	String test = "1+2+3";
+	Scanner in = new Scanner(test);
+	System.out.println("first:" + in.next());
+	System.out.println("second:" + in.next());
+	System.out.println("third:" + in.next());
+}
+}

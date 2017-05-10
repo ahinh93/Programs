@@ -1,0 +1,143 @@
+/**
+ * 10/23/13 
+ * @author Andrew Hinh
+ */
+import myUtil.*;
+
+import java.text.DecimalFormat;
+import java.util.*;
+import java.io.*;
+
+public class Asg6 {
+
+	public static void main(String[] args) {
+
+		Scanner in;
+		AStack operands;
+		AStack values;
+		DecimalFormat nf = new DecimalFormat("#0.####");
+		try {
+			in = new Scanner(new File("/home/cli2/public/IT179/arithExps.txt"));
+			
+			while (in.hasNext()) {
+				String fullLine = in.nextLine();				
+				System.out.print(fullLine + " = " + nf.format(computeLine(fullLine)) + "\n");				
+			}
+		}
+		catch (FileNotFoundException e)
+		{			
+			System.out.println("No argument nor file was found.");
+		}	
+	}
+	private static double computeLine(String a) {
+		double lineTotal = 0;
+		AStack<String> opStack = new AStack<String>(a.length());
+		AStack<Double> numStack = new AStack<Double>(a.length());
+		String spacedLine = "";
+		
+		String o,c,t,d,p,m,e;
+		o = "("; //open parenthesis
+		c = ")"; //close parenthesis
+		t = "*"; //times
+		d = "/";// divide
+		p = "+";//plus
+		m = "-";//minus
+		e = "^";//exponent
+		
+		for (int i = 0; i < a.length(); i++) {
+
+			if (a.charAt(i) == '(' || a.charAt(i) == ')' || 
+					a.charAt(i) == '*' || a.charAt(i) == '/' || 
+					a.charAt(i) == '+' || a.charAt(i) == '-' || 
+					a.charAt(i) == '^') {
+				spacedLine += (" " +a.charAt(i) + " ");			
+			}
+			else {
+				spacedLine+= a.charAt(i);
+			}
+		}
+		//spacedLine is now formated line to space between double and operator
+		
+		//2 goals: print postfix THEN return total
+		Scanner scan = new Scanner(spacedLine);
+		
+		while (scan.hasNext()) {
+			String test = scan.next();
+			//System.out.print(test);
+			//if next item is NOT an operator aka its a value
+			if (!test.equals(o) && !test.equals(c) && !test.equals(t) && !test.equals(d) && 
+					!test.equals(m) && !test.equals(p) && !test.equals(e)) {
+				numStack.push(Double.parseDouble(test));
+			}
+			//if its an operator
+			else {
+				//if stack is empty, push operator
+				if (opStack.empty() && !test.equals(c)) opStack.push(scan.next());
+				
+				/*
+				 * if stack is not empty, peek opStack:
+				 * 1. if peek is lower priority -> push
+				 * 2. if peek is higher priority -> pop opStack and pass through postFix()
+				 */
+				else { 
+					//push when current is higher priority than inside stack
+					if (test.equals(o)) opStack.push("(");
+					else if (test.equals(e)) opStack.push("^");
+					else if (test.equals(t) && opStack.peek().equals("^")) opStack.push("*");
+					else if (test.equals(d) && opStack.peek().equals("^")) opStack.push("/");
+					else if (test.equals(p) && (!opStack.peek().equals("^")) || !opStack.peek().equals("*") || !opStack.peek().equals("/"))
+							opStack.push("+");
+					else if (test.equals(m) && (!opStack.peek().equals("^")) || !opStack.peek().equals("*") || !opStack.peek().equals("/"))
+							opStack.push("-");
+					//special case when we see ")"
+					else if (test.equals(")")) {
+						while (opStack.peek().equals("(")) {
+							postFix(opStack.pop(), numStack);
+						}
+						opStack.pop();
+					}
+					//pop when current is lower priority than inside stack
+					
+					else if (test.equals(t)) postFix("*", numStack);
+					else if (test.equals(d)) postFix("/", numStack);
+					else if (test.equals(p)) postFix("+", numStack);
+					else if (test.equals(m)) postFix("-", numStack);
+				}	
+			}	
+		}
+		System.out.println();
+		return numStack.pop();
+	}
+	/* Will take out two values from numStack
+	 * Will print out equation in post fix and add new value into numStack
+	 */
+	private static void postFix(String o, AStack<Double> num) {
+		double first, second;
+		DecimalFormat df = new DecimalFormat("#0.####");
+		second = num.pop();
+		first = num.pop();
+		if (o == "^") {
+			System.out.print(first + " " + second + " ^ = " + Math.pow(first, second));
+			num.push(Math.pow(first, second));
+		}
+		if (o == "*") {
+			System.out.print(first + " " + second + " * = " + (first*second));
+			num.push(first*second);
+		}
+		if (o == "/") {
+			if (second == 0)System.out.print("Cannot divide by 0");
+			else {
+				System.out.print(first + " " + second + " / = " + df.format(first/second));
+				num.push(first/second);
+			}
+		}
+		if (o == "+") {
+			System.out.print(first + " " + second + " + = " + (first+second));
+			num.push(first+second);
+		}
+		if (o == "-") {
+			System.out.print(first + " " + second + " - = " + (first-second));
+			num.push(first-second);
+		}
+	}
+}

@@ -1,0 +1,217 @@
+#ifndef _PRIORITYQUEUE_H
+#define _PRIORITYQUEUE_H
+
+#include <vector>
+#include <string>
+#include <map>
+using namespace std;
+
+template <class T>
+class PriorityQueue
+{
+class HeapNode
+  {
+    friend class PriorityQueue;
+  private:
+    T obj;
+    double priority;
+    int *indexptr;
+
+  public:
+    HeapNode()
+    {
+      priority = -1;
+      indexptr = NULL;
+    }
+    HeapNode(T obj,double priority,int *indexptr)
+    {
+      this->obj = obj;
+      this->priority = priority;
+      this->indexptr = indexptr;
+    }
+    
+  };
+
+
+
+
+ private:
+  vector<HeapNode *> heap;
+  map<T,int*> mapObjects;
+
+ public:
+  PriorityQueue();
+  ~PriorityQueue();
+  void insert(T obj,const double priority);
+  bool isEmpty();
+  T front();
+  void changePriority(T obj,const double priority);
+  void remove(T obj);
+
+ private:
+//  int size;
+  void percolateDown(int index);
+  void percolateUp(int index);
+
+};
+
+template <class T>
+PriorityQueue<T>::PriorityQueue()
+{
+ // size = 0;
+}
+
+template <class T>
+PriorityQueue<T>::~PriorityQueue()
+{
+  typename map<T,int *>::iterator it;
+
+  for (it=mapObjects.begin();it!=mapObjects.end();it++)
+    delete it->second;
+    
+  for (int i=0;i<heap.size();i++)
+  	delete heap[i];
+}
+
+template <class T>
+void PriorityQueue<T>::insert(T vertex,const double priority)
+{
+  int *indexptr = new int(heap.size());
+
+  //create a heap node 
+  HeapNode *node = new HeapNode(vertex,priority,indexptr);
+
+
+  //put it in the heap and percolate up
+  heap.push_back(node);
+ 
+  percolateUp(heap.size()-1);//that's where I just added it
+  mapObjects[vertex] = indexptr; //add it to the map as well
+//  size++;
+}
+
+template<class T>
+T PriorityQueue<T>::front()
+{
+
+  HeapNode *temp;
+  T obj;
+
+  if (heap.size()==0)
+    return -1;
+
+  //swap the nodes at index 0 and index size-1 in the heap
+  temp = heap[0];
+  heap[0] = heap[heap.size()-1];
+  heap[heap.size()-1] = temp;
+
+  obj = temp->obj;
+
+  //now delete the last entry of the heap
+  heap.pop_back();
+  //reduce size
+ // size--;
+  //now percolate down
+ 
+  if (heap.size()>0)
+  	percolateDown(0);
+  //delete from the map
+  mapObjects.erase(obj);
+  //delete pointer
+  delete temp->indexptr;
+  delete temp;
+  
+  return obj;
+}
+
+template <class T>
+bool PriorityQueue<T>::isEmpty()
+{
+  return heap.size()==0;
+}
+
+template <class T>
+void PriorityQueue<T>::changePriority(T obj,const double priority)
+{  
+  //using the map, find the index of obj in the heap
+  if (mapObjects.count(obj)==0)
+    return; //cannot be done as it is not there in the heap
+
+  int index = *(mapObjects[obj]);
+
+  //change the key
+  double oldpriority = heap[index]->priority;
+  heap[index]->priority = priority;
+  if (oldpriority<priority) //value increased, so percolate downward
+    percolateDown(index);
+  else
+    percolateUp(index);
+}
+
+template <class T>
+void PriorityQueue<T>::percolateDown(int index)
+{
+  int child;
+  int hole = index;
+  HeapNode *tmp = heap[hole];
+
+  while (hole<heap.size())
+  {
+    child = 2*hole+1;
+    if (child>=heap.size())
+      break;
+    if (((child+1)<heap.size()) && (heap[child+1]->priority<heap[child]->priority))
+      child = child +1;
+    
+    if (heap[child]->priority<tmp->priority)
+    {
+      heap[hole] = heap[child];
+      //change the pointer value as well
+      *(heap[hole]->indexptr) = hole;
+      hole = child;
+    }
+    else
+      break;
+   
+  }
+  heap[hole] = tmp;
+  *(heap[hole]->indexptr) = hole;
+}
+
+template <class T>  
+void PriorityQueue<T>::percolateUp(int index)
+{
+  int hole = index;
+  HeapNode *tmp = heap[index];
+
+  while ((hole>=1) && (tmp->priority<heap[(hole-1)/2]->priority))
+  {
+    heap[hole] = heap[(hole-1)/2];
+    //change the value of the pointer as well
+    *(heap[hole]->indexptr) = hole;
+
+    hole = (hole-1)/2;
+  }
+  heap[hole] = tmp;
+  *(heap[hole]->indexptr) = hole;
+}
+
+template <class T>
+void PriorityQueue<T>::remove(T obj)
+{
+  int index;
+
+  //first find the object in the heap
+  if (mapObjects.count(obj)==0)
+    return; //cannot remove what is not there to begin with
+
+  //change the priority of this object so that it is at the top of the min-heap
+  changePriority(obj,heap[0]->priority-1);
+  //now deleteMin
+  front();
+}
+
+
+
+#endif
+

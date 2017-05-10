@@ -1,0 +1,40 @@
+#ifndef asg4_h_
+#define asg4_h_
+#include "stdio.h"
+#include "stdlib.h"
+#include "fcntl.h"
+#include "sys/stat.h"
+#include "math.h"
+
+int main()
+{
+	FILE *fd;
+	fd = fopen("output.txt","w");
+
+	char buffer[10];
+
+	int in;
+	int counter;
+	int arr[10];
+	int size;
+	for(counter = 0; counter < 10; counter++)
+	{
+		printf("arr[%d]=? ",counter);
+		scanf("%d,",&in);
+		arr[counter] = in;			
+		size = sprintf(buffer,"%d", arr[counter]);
+		fwrite(buffer, size, 1, fd);
+		//write new line
+		fwrite("\n",sizeof(char),1,fd);
+	}
+	printf("reverse order of list: \n");
+	for(counter = 9; counter >= 0; counter--)
+	{
+		printf("arr[%d] = %d\n",counter,arr[counter]);
+	}
+
+	fclose(fd);
+	return 0;
+}
+
+#endif
